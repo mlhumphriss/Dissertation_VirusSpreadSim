@@ -44,3 +44,8 @@
 *.vcxproj
 *.filters
 *.user
+*.ipch
+Disserta.6f4f8ccd/x64/Debug/Dissertation_VirusSpreadSim.vcxproj.FileListAbsolute.txt
+.vs/Dissertation_VirusSpreadSim/v17/Browse.VC.opendb
+*.db-shm
+*.db-wal

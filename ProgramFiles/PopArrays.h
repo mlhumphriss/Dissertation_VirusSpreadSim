@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include "Person.h"
 
@@ -8,8 +9,8 @@ public:
 		outsidePop = new Person[pop];
 	};
 	~PopArrays() {
-		delete worldPop;
-		delete outsidePop;
+		//delete worldPop;
+		//delete outsidePop;
 	}
 	
 	void addToWorldArray(int i, Person p){

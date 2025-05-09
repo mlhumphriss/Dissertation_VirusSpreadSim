@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 #include <vector>
 #include <ctime>
@@ -8,6 +9,9 @@
 #include "PopArrays.h"
 
 using namespace std;
+
+class Person;
+//class PopArrays;
 
 class DatabaseBuilder {
 public:
@@ -31,4 +35,5 @@ public:
 protected:
 	time_t seed;
 	int popDB;
+	//PopArrays arrayDB;
 };
