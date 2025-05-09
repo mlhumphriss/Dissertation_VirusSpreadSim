@@ -5,6 +5,7 @@
 #include "DataRW.h"
 #include "Person.h"
 #include "EnvironmentFactors.h"
+#include "PopArrays.h"
 
 using namespace std;
 
@@ -23,7 +24,7 @@ public:
 		if (pop < dRW.getReadPop()) { return 1; }
 		return 0;
 	}
-	void initialiseDatabase(Person* worldPop[], int size); //todo
+	void initialiseDatabase(PopArrays arrays, int size); //todo
 
 
 

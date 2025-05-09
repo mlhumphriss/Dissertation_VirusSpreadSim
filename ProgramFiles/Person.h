@@ -8,7 +8,7 @@ class Person {
 public:
 
 	Person() {};
-	Person(int hR, int jI, float rebel, bool vac) {
+	Person(int hR, int jI, float rebel, bool vac, bool bE) {
 		healthRisk = hR;
 		jobImportance = jI;
 		rebeliousness = rebel;
@@ -18,6 +18,7 @@ public:
 		infected = false;
 		vaccinated = vac;
 		daysSinceLeft = 0;
+		bufferEnd = bE;
 	};
 
 	~Person() {}
@@ -99,5 +100,7 @@ protected:
 
 
 	float	rebeliousness;
+
+	bool	bufferEnd;
 
 };
