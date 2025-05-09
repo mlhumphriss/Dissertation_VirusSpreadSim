@@ -15,6 +15,6 @@ void DatabaseBuilder::initialiseDatabase(PopArrays arrays, int size) {
 		Person p = Person(healthRisk, jobImportance, rebeliousness, false, false);
 
 		arrays.addToWorldArray(i, p);
-		
 	}
+
 }

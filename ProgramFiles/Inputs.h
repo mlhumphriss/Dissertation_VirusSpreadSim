@@ -2,14 +2,18 @@
 #include <iostream>
 #include <vector>
 #include <cstdlib>
+#include "EnvironmentFactors.h"
 
 using namespace std;
 
 class Inputs {
 public:
+	Inputs();
 
-
-
+	int setEnvironmentAttributes(EnvironmentFactors e) {
+		int c = e.setEnvironmentFactors(iMasksEnforced, iSocialDistancing, iPushingHandSanitizer, iLockdown, iVaccinationRollout, iMinInfectionPeriod, iAsymptomaticPeriod, iGroupRebel, iLengthSim);
+		return c;
+	}
 
 	bool getILockdown() { return iLockdown; }
 	bool getIMaskEnforced() { return iMasksEnforced; }

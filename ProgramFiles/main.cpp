@@ -5,7 +5,7 @@
 #include "PopArrays.h"
 #include "DataRW.h"
 #include "DatabaseBuilder.h"
-
+#include "EnvironmentFactors.h"
 
 using namespace std;
 
@@ -20,6 +20,7 @@ int main() {
 	PopArrays population = PopArrays(pop);
 	DataRW dataOutput;
 	DatabaseBuilder DBBuild = DatabaseBuilder(pop);
+	EnvironmentFactors environment;
 
 	
 

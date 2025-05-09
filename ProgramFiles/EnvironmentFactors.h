@@ -3,7 +3,9 @@
 
 class EnvironmentFactors {
 public:
-	EnvironmentFactors(bool mE, bool sD, bool pHS, bool l, bool vR, int mIP, int aP, float gR) {
+	EnvironmentFactors();
+
+	int setEnvironmentFactors(bool mE, bool sD, bool pHS, bool l, bool vR, int mIP, int aP, float gR, int lS) {
 		masksEnforced = mE;
 		socialDistancing = sD;
 		pushingHandSanitizer = pHS;
@@ -12,6 +14,8 @@ public:
 		minInfectionPeriod = mIP;
 		asymptomaticPeriod = aP;
 		groupRebel = gR;
+		lengthSim = lS;
+		return 0;
 	};
 
 	~EnvironmentFactors() {}
@@ -48,5 +52,6 @@ protected:
 	int		asymptomaticPeriod;
 
 	float	groupRebel;
+	int		lengthSim;
 
 };
