@@ -16,6 +16,9 @@ public:
 	void addToWorldArray(int i, Person p){
 		worldPop[i] = p;
 	}
+	void addToOutsideArray(int i, Person p) {
+		outsidePop[i] = p;
+	}
 
 	Person* getWorldPop() { return worldPop; }
 	Person* getOutsidePop() { return outsidePop; }

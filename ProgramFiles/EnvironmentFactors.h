@@ -3,7 +3,7 @@
 
 class EnvironmentFactors {
 public:
-	EnvironmentFactors();
+	EnvironmentFactors() {};
 
 	int setEnvironmentFactors(bool mE, bool sD, bool pHS, bool l, bool vR, int mIP, int aP, float gR, int lS) {
 		masksEnforced = mE;
