@@ -17,7 +17,7 @@ bool initialisation() {
 	PopArrays population = PopArrays(pop);
 	DataRW dataOutput;
 	DatabaseBuilder DBBuild = DatabaseBuilder(pop);
-	EnvironmentFactors environment;
+	EnvironmentFactors environment = EnvironmentFactors(pop);
 
 	return true;
 }

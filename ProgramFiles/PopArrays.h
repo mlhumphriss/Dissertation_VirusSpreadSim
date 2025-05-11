@@ -22,6 +22,8 @@ public:
 		outsidePop[i] = p;
 	}
 
+	Person getPersonFromWorld(int i) { return worldPop[i]; }
+
 	Person* getWorldPop() { return worldPop; }
 	Person* getOutsidePop() { return outsidePop; }
 	

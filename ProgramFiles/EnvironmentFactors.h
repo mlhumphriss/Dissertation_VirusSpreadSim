@@ -3,7 +3,7 @@
 
 class EnvironmentFactors {
 public:
-	EnvironmentFactors() {};
+	EnvironmentFactors(int pop) { population = pop; };
 
 	int setEnvironmentFactors(bool mE, bool sD, bool pHS, bool l, bool vR, int mIP, int aP, float gR, int lS) {
 		masksEnforced = mE;
@@ -26,6 +26,8 @@ public:
 	bool getPushHandSani() { return pushingHandSanitizer; }
 	int  getMinInfectPeriod() { return minInfectionPeriod; }
 	int  getAsympPeriod() { return asymptomaticPeriod; }
+	int	 getLengthSim() { return lengthSim; }
+	int  getPopulation() { return population; }
 	float getGroupRebel() { return groupRebel; }
 
 	void setLockdown(bool l) {
@@ -50,6 +52,7 @@ protected:
 
 	int		minInfectionPeriod;
 	int		asymptomaticPeriod;
+	int		population;
 
 	float	groupRebel;
 	int		lengthSim;
