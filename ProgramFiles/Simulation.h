@@ -14,9 +14,10 @@ public:
 		simDay = 0;
 		peopleOutside = 0;
 		numberInfected = 0;
+		infectionChance = 1.0f;
 	};
 
-
+	int simInfectionChance();
 	int studyLoop(int length);
 	int leaveHouseLoop();
 	int interactInfectLoop();
@@ -33,5 +34,6 @@ protected:
 	int		simDay;
 	int		peopleOutside;
 	int		numberInfected;
+	float	infectionChance;
 
 };

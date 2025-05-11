@@ -12,6 +12,8 @@ void DatabaseBuilder::initialiseDatabase(PopArrays arrays, int size) {
 		healthRisk = rand() % 2;
 		jobImportance = rand() % 3;
 		rebeliousness = (1.0f + rand()%20) / 10;
+		if (healthRisk == 1) { rebeliousness = rebeliousness * 0.5; }
+
 		Person p = Person(healthRisk, jobImportance, rebeliousness, false, false);
 
 		arrays.addToWorldArray(i, p);

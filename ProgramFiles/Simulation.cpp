@@ -1,5 +1,10 @@
 #include "Simulation.h"
 
+int Simulation::simInfectionChance() { //Calculates general infection chanceif restrictions of world followed
+
+	return 0;
+}
+
 int Simulation::leaveHouseLoop() {
 	peopleOutside = 0;
 	numberInfected = 0;
@@ -12,6 +17,12 @@ int Simulation::leaveHouseLoop() {
 }
 
 int Simulation::interactInfectLoop() { //Plan Is will check if infect was today as if is will ignore
+	float rulebreakChance;
+
+	for (int k = 0; k < peopleOutside; k++) {
+		rulebreakChance = environment.getGroupRebel() * (arrays.getPersonFromOutside(k).getRebel());
+	}
+	
 	return 0;
 }
 

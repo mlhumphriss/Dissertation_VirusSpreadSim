@@ -23,6 +23,7 @@ public:
 	}
 
 	Person getPersonFromWorld(int i) { return worldPop[i]; }
+	Person getPersonFromOutside(int i) { return outsidePop[i]; }
 
 	Person* getWorldPop() { return worldPop; }
 	Person* getOutsidePop() { return outsidePop; }

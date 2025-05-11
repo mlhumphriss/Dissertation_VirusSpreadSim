@@ -85,6 +85,7 @@ public:
 	bool getVaccinated() {
 		return vaccinated;
 	}
+	float getRebel() { return rebeliousness; }
 
 protected:
 	bool	asymptomatic;
@@ -94,7 +95,7 @@ protected:
 	vector<int> daysInfected;
 
 	bool	vaccinated;
-	int		healthRisk;
+	int		healthRisk; // if hR = 1, higher risk people
 	int		jobImportance;
 
 	int		daysSinceLeft;
