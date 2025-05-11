@@ -8,7 +8,12 @@
 
 class Simulation {
 public:
-	Simulation() {};
+	Simulation(){};
+
+
+	int studyLoop(int length);
+	int leaveHouseLoop();
+	int interactInfectLoop();
 
 	int getSimDay() { return simDay; }
 	int getPeopleOutside() { return peopleOutside; }
@@ -18,4 +23,5 @@ public:
 protected:
 	int		simDay;
 	int		peopleOutside;
+	EnvironmentFactors environment;
 };
