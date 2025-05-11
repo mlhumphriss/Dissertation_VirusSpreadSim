@@ -8,7 +8,13 @@
 
 class Simulation {
 public:
-	Simulation(){};
+	Simulation(EnvironmentFactors e, PopArrays a){
+		environment = e;
+		arrays = a;
+		simDay = 0;
+		peopleOutside = 0;
+		numberInfected = 0;
+	};
 
 
 	int studyLoop(int length);
@@ -21,7 +27,11 @@ public:
 	void setPeopleOutside(int pO) { peopleOutside = pO; }
 
 protected:
+	EnvironmentFactors environment;
+	PopArrays	arrays;
+	
 	int		simDay;
 	int		peopleOutside;
-	EnvironmentFactors environment;
+	int		numberInfected;
+
 };

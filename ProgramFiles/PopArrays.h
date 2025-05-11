@@ -4,6 +4,8 @@
 
 class PopArrays {
 public:
+	PopArrays() {};
+
 	PopArrays(int pop) {
 		worldPop = new Person[pop];
 		outsidePop = new Person[pop];
