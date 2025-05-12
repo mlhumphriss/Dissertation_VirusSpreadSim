@@ -1,6 +1,9 @@
 #include "Simulation.h"
 
 int Simulation::simInfectionChance() { //Calculates general infection chanceif restrictions of world followed
+	infectionChance = 1.0;
+	if (environment.getMaskEnforced()) { infectionChance = infectionChance * 0.3; }
+	if (environment.getSocialDistancing()) { infectionChance = infectionChance * 0.8; }
 
 	return 0;
 }
