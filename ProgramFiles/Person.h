@@ -9,7 +9,7 @@ class Person {
 public:
 
 	Person() {};
-	Person(int hR, int jI, float rebel, bool vac, bool bE) {
+	Person(int hR, int jI, float rebel, bool vac) {
 		healthRisk = hR;
 		jobImportance = jI;
 		rebeliousness = rebel;
@@ -19,7 +19,7 @@ public:
 		infected = false;
 		vaccinated = vac;
 		daysSinceLeft = 0;
-		bufferEnd = bE;
+		worldArrayReference = 0;
 	};
 
 	~Person() {}
@@ -37,7 +37,8 @@ public:
 
 	void setInfected(bool i, int d) {
 		if (infected == true) {
-			infected = i; 
+			infected = i;
+			dayInfected = d;
 			return;
 		}
 		else {
@@ -50,42 +51,21 @@ public:
 		}
 	}
 
-	void setDaysSinceLeft(int d) {
-		daysSinceLeft = d;
-	}
+	void	setDaysSinceLeft(int d) { daysSinceLeft = d; }
+	void	setAsymptomatic(bool a) { asymptomatic = a; }
+	void	setVaccinated(bool v) { vaccinated = v; }
+	void	setWorldArrayRef(int r) { worldArrayReference = r; }
 
-	void setAsymptomatic(bool a) {
-		asymptomatic = a;
-	}
-
-	void setVaccinated(bool v) {
-		vaccinated = v;
-	}
-
-	int getDayInfected() {
-		return dayInfected;
-	}
-
-	int getTimesInfected() {
-		return timesInfected;
-	}
-
-	int getDaySinceLeft() {
-		return daysSinceLeft;
-	}
-
-	bool getInfected() {
-		return infected;
-	}
-
-	bool getAsymptomatic() {
-		return asymptomatic;
-	}
-
-	bool getVaccinated() {
-		return vaccinated;
-	}
-	float getRebel() { return rebeliousness; }
+	int		getDayInfected() { return dayInfected; }
+	int		getTimesInfected() { return timesInfected; }
+	int		getDaySinceLeft() { return daysSinceLeft; }
+	bool	getInfected() { return infected; }
+	bool	getAsymptomatic() { return asymptomatic; }
+	bool	getVaccinated() { return vaccinated; }
+	float	getRebel() { return rebeliousness; }
+	int		getHealthRisk() { return healthRisk; }
+	int		getJobImportance() { return jobImportance; }
+	int		getWorldArrayref() { return worldArrayReference; }
 
 protected:
 	bool	asymptomatic;
@@ -96,13 +76,13 @@ protected:
 
 	bool	vaccinated;
 	int		healthRisk; // if hR = 1, higher risk people
-	int		jobImportance;
+	int		jobImportance; //=0 high importance to =2 low importance
 
 	int		daysSinceLeft;
 
 
 	float	rebeliousness;
 
-	bool	bufferEnd;
+	int		worldArrayReference;
 
 };

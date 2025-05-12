@@ -28,7 +28,7 @@ public:
 		if (pop < dRW.getReadPop()) { return 1; }
 		return 0;
 	}
-	void initialiseDatabase(PopArrays arrays, int size); //todo
+	void initialiseDatabase(PopArrays arrays, int size, EnvironmentFactors environment); //todo
 
 
 

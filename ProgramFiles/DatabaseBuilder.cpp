@@ -1,7 +1,7 @@
 #include "DatabaseBuilder.h"
 #include "Person.h"
 
-void DatabaseBuilder::initialiseDatabase(PopArrays arrays, int size) {
+void DatabaseBuilder::initialiseDatabase(PopArrays arrays, int size, EnvironmentFactors environment) {
 	srand(seed);
 	int	healthRisk;
 	int	jobImportance;
@@ -11,10 +11,11 @@ void DatabaseBuilder::initialiseDatabase(PopArrays arrays, int size) {
 	for (int i = 0; i < size; ++i) {
 		healthRisk = rand() % 2;
 		jobImportance = rand() % 3;
-		rebeliousness = (1.0f + rand()%20) / 10;
+		rebeliousness = (1.0f + rand()%15) / 10;
 		if (healthRisk == 1) { rebeliousness = rebeliousness * 0.5; }
+		rebeliousness = rebeliousness * environment.getGroupRebel();
 
-		Person p = Person(healthRisk, jobImportance, rebeliousness, false, false);
+		Person p = Person(healthRisk, jobImportance, rebeliousness, false);
 
 		arrays.addToWorldArray(i, p);
 	}

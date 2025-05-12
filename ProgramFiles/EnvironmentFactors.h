@@ -3,6 +3,8 @@
 
 class EnvironmentFactors {
 public:
+	EnvironmentFactors() {};
+
 	EnvironmentFactors(int pop) { population = pop; };
 
 	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS) {

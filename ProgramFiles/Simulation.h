@@ -2,9 +2,11 @@
 #include <iostream>
 #include <vector>
 #include <ctime>
+#include <cstdlib>
 #include "EnvironmentFactors.h"
 #include "PopArrays.h"
 #include "Person.h"
+
 
 class Simulation {
 public:
@@ -14,6 +16,7 @@ public:
 		simDay = 0;
 		peopleOutside = 0;
 		numberInfected = 0;
+		infectedOutside = 0;
 		infectionChance = 1.0f;
 	};
 
@@ -34,6 +37,7 @@ protected:
 	int		simDay;
 	int		peopleOutside;
 	int		numberInfected;
+	int		infectedOutside;
 	float	infectionChance;
 
 };

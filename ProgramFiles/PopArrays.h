@@ -18,7 +18,8 @@ public:
 	void addToWorldArray(int i, Person p){
 		worldPop[i] = p;
 	}
-	void addToOutsideArray(int i, Person p) {
+	void addToOutsideArray(int i, Person p, int r) {
+		p.setWorldArrayRef(r);
 		outsidePop[i] = p;
 	}
 
