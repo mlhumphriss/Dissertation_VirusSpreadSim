@@ -1,6 +1,6 @@
 #include "Simulation.h"
 
-int Simulation::simInfectionChance() { //Calculates general infection chanceif restrictions of world followed
+int Simulation::simInfectionChance() { //Calculates general infection chance if restrictions of world followed
 	infectionChance = 1.0;
 	if (environment.getMaskEnforced()) { infectionChance = infectionChance * 0.3; }
 	if (environment.getSocialDistancing()) { infectionChance = infectionChance * 0.8; }
@@ -36,26 +36,75 @@ int Simulation::leaveHouseLoop() {
 				arrays.addToOutsideArray(peopleOutside, p, j);
 				peopleOutside += 1;
 				infectedOutside += 1;
+				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
 			}
-			else if (p.getInfected() && !p.getAsymptomatic() && simDay-p.getDayInfected()> environment.getAsympPeriod()+3){
+			else if (p.getInfected() && !p.getAsymptomatic() && simDay - p.getDayInfected() > environment.getAsympPeriod() + 3){
 				if(((1.0f + rand() % 10) / 10) * p.getRebel() > 1.0f){
 					arrays.addToOutsideArray(peopleOutside, p, j);
 					peopleOutside += 1;
 					infectedOutside += 1;
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
 				}
 				else {
-					continue;
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(arrays.getPersonFromWorld(j).getDaySinceLeft() + 1);
 				}
 			}
 			else {
 				arrays.addToOutsideArray(peopleOutside, p, j);
 				peopleOutside += 1;
+				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
 			}
-			continue;
 		}
 		
-		if (environment.getLockdown() && p.getJobImportance() != 0) {
-			leaveChance = 1.0f;  //increase with days since left, * by rebel
+		else if (environment.getLockdown() && p.getJobImportance() != 0 || p.getJobImportance() == 2) {
+			leaveChance = (0.1f * p.getDaySinceLeft()) + (rand() % 10)/10 ;  //increase with days since left, * by rebel
+			if (p.getHealthRisk() == 1) { leaveChance = leaveChance * 0.5f; }
+
+			if (p.getInfected() && !p.getAsymptomatic() && simDay - p.getDayInfected() > environment.getAsympPeriod() + 3) {
+				leaveChance = leaveChance * 0.5 * p.getRebel();
+				if (leaveChance > 1.0f) {
+					arrays.addToOutsideArray(peopleOutside, p, j);
+					peopleOutside += 1;
+					infectedOutside += 1;
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+				}
+				else {
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(arrays.getPersonFromWorld(j).getDaySinceLeft() + 1);
+				}
+			}
+			else if (leaveChance * p.getRebel() > 1.0f) {
+				arrays.addToOutsideArray(peopleOutside, p, j);
+				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+				if (p.getInfected() == true && p.getAsymptomatic() == true) {
+					peopleOutside += 1;
+					infectedOutside += 1;
+				}
+			}
+		}
+
+		else {
+			if (p.getInfected() == true && p.getAsymptomatic() == true) {
+				arrays.addToOutsideArray(peopleOutside, p, j);
+				peopleOutside += 1;
+				infectedOutside += 1;
+				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+			}
+			else if (p.getInfected() && !p.getAsymptomatic() && simDay - p.getDayInfected() > environment.getAsympPeriod() + 3) {
+				if (((1.0f + rand() % 10) / 10) * p.getRebel() > 1.0f) {
+					arrays.addToOutsideArray(peopleOutside, p, j);
+					peopleOutside += 1;
+					infectedOutside += 1;
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+				}
+				else {
+					arrays.getPersonFromWorld(j).setDaysSinceLeft(arrays.getPersonFromWorld(j).getDaySinceLeft() + 1);
+				}
+			}
+			else {
+				arrays.addToOutsideArray(peopleOutside, p, j);
+				peopleOutside += 1;
+				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+			}
 		}
 	}
 
