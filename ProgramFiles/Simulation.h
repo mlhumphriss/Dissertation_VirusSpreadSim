@@ -18,6 +18,7 @@ public:
 		numberInfected = 0;
 		infectedOutside = 0;
 		infectionChance = 1.0f;
+		avgPeopleInteractions = 17;
 	};
 
 	int simInfectionChance();
@@ -38,6 +39,8 @@ protected:
 	int		peopleOutside;
 	int		numberInfected;
 	int		infectedOutside;
+
+	int		avgPeopleInteractions;
 	float	infectionChance;
 
 };
