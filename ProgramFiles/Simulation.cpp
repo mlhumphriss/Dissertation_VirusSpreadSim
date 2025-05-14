@@ -112,16 +112,31 @@ int Simulation::leaveHouseLoop() {
 }
 
 int Simulation::interactInfectLoop() { //Plan Is will check if infect was today as if is will ignore
-
+	Person p;
 
 	for (int k = 0; k < peopleOutside; k++) {
-		
+		p = arrays.getPersonFromOutside(k);
+
+		if (p.getInfected()) {
+			continue;
+		}
+		if (environment.getLockdown() && p.getJobImportance() != 0) {
+			for (int x = 0; x < (avgPeopleInteractions / 2); x++) {
+				if ((rand() % peopleOutside) < infectedOutside) {
+					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() > 0.5f) { // need data based infection chance between 0 and 1
+
+					}
+				}
+			}
+		}
+
 	}
 	
 	return 0;
 }
 
 int Simulation::studyLoop(int length) {
+	srand(time(0));
 
 	for (int i = 0; i < length; i++) {
 		simDay += 1;

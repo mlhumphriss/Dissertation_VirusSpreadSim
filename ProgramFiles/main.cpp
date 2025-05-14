@@ -27,8 +27,7 @@ int main() {
 	if (!initialisation()) {
 		return -1;
 	}
-
-
+	
 
 }
 	
