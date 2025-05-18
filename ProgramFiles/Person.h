@@ -38,7 +38,6 @@ public:
 	void setInfected(bool i, int d) {
 		if (infected == true) {
 			infected = i;
-			dayInfected = d;
 			return;
 		}
 		else {

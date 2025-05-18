@@ -111,8 +111,9 @@ int Simulation::leaveHouseLoop() {
 	return 0;
 }
 
-int Simulation::interactInfectLoop() { //Plan Is will check if infect was today as if is will ignore
+int Simulation::interactInfectLoop() {
 	Person p;
+	int worldRef;
 
 	for (int k = 0; k < peopleOutside; k++) {
 		p = arrays.getPersonFromOutside(k);
@@ -123,8 +124,21 @@ int Simulation::interactInfectLoop() { //Plan Is will check if infect was today 
 		if (environment.getLockdown() && p.getJobImportance() != 0) {
 			for (int x = 0; x < (avgPeopleInteractions / 2); x++) {
 				if ((rand() % peopleOutside) < infectedOutside) {
-					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() > 0.5f) { // need data based infection chance between 0 and 1
-
+					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() >= 0.5f) { // need data based infection chance between 0 and 1
+						worldRef = p.getWorldArrayref();
+						arrays.getPersonFromWorld(worldRef).setInfected(true, simDay);
+						continue;
+					}
+				}
+			}
+		}
+		else {
+			for (int x = 0; x < avgPeopleInteractions; x++) {
+				if ((rand() % peopleOutside) < infectedOutside) {
+					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() >= 0.6f) { // need data based infection chance between 0 and 1
+						worldRef = p.getWorldArrayref();
+						arrays.getPersonFromWorld(worldRef).setInfected(true, simDay);
+						continue;
 					}
 				}
 			}
@@ -137,9 +151,16 @@ int Simulation::interactInfectLoop() { //Plan Is will check if infect was today 
 
 int Simulation::studyLoop(int length) {
 	srand(time(0));
+	simInfectionChance();
 
 	for (int i = 0; i < length; i++) {
 		simDay += 1;
+
+		leaveHouseLoop();
+
+		interactInfectLoop();
+
+//need to put infections into buffer for output
 
 	}
 	return 0;
