@@ -33,17 +33,26 @@ int Simulation::leaveHouseLoop() {
 			}
 		}
 
-		// Need to adjust infection length depending on if vacc'd, and infection chance
+		// Need to adjust infection chance depending on if vacc'd
 
 		if (arrays.getPersonFromWorld(j).getInfected() == true) {
 			numberInfected += 1;
-			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getMinInfectPeriod() && (arrays.getPersonFromWorld(j).getDayInfected()!= -1)) {
+			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getMinInfectPeriod() && (arrays.getPersonFromWorld(j).getDayInfected() != -1)) {
 				if (rand() % 2 == 1) {
 					arrays.getPersonFromWorld(j).setInfected(false, -1);
 				}
 			}
 			if (arrays.getPersonFromWorld(j).getAsymptomatic() == true && (simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod()) {
 				arrays.getPersonFromWorld(j).setAsymptomatic(false);
+			}
+			//For when vaccination rollout is applied
+			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod() && arrays.getPersonFromWorld(j).getVaccinated()){
+				if (rand() % 2 == 1) {
+					arrays.getPersonFromWorld(j).setInfected(false, -1);
+				}
+				else if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod()+2) {
+					arrays.getPersonFromWorld(j).setInfected(false, -1);
+				}
 			}
 		}
 
