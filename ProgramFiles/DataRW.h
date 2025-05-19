@@ -19,6 +19,7 @@ public:
 
 	//need write for sim results but need to work that out later
 
+	string getTestDataFile() { return testDataFile; }
 	int		getReadPop() { return readPop; }
 	time_t	getReadSeed() { return readSeed; }
 
