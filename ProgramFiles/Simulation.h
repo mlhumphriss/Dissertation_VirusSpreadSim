@@ -19,6 +19,7 @@ public:
 		infectedOutside = 0;
 		infectionChance = 1.0f;
 		avgPeopleInteractions = 17;
+		numVaccinated = 0;
 	};
 
 	int simInfectionChance();
@@ -26,10 +27,14 @@ public:
 	int leaveHouseLoop();
 	int interactInfectLoop();
 
+	
+
 	int getSimDay() { return simDay; }
 	int getPeopleOutside() { return peopleOutside; }
+	int getNumVaccinated() { return numVaccinated; }
 	void setSimDay(int sD) { simDay = sD; }
 	void setPeopleOutside(int pO) { peopleOutside = pO; }
+	void setNumVaccinated(int nV) { numVaccinated = nV; }
 
 protected:
 	EnvironmentFactors environment;
@@ -39,6 +44,7 @@ protected:
 	int		peopleOutside;
 	int		numberInfected;
 	int		infectedOutside;
+	int		numVaccinated;
 
 	int		avgPeopleInteractions;
 	float	infectionChance;

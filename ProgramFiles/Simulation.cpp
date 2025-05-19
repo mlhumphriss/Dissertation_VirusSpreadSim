@@ -14,8 +14,26 @@ int Simulation::leaveHouseLoop() {
 	infectedOutside = 0;
 	Person p;
 	float leaveChance;
+	int dayVacc = 0;
 
 	for (int j = 0; j < environment.getPopulation(); j++) {
+
+		if (environment.getVaccinationRollOut() && !arrays.getPersonFromWorld(j).getVaccinated() && dayVacc < 5) {
+			if (numVaccinated <= (environment.getNumHealthRisk() - 5) && arrays.getPersonFromWorld(j).getHealthRisk() == 1) {
+				if ((1.0f + rand() % 10) / 10 * arrays.getPersonFromWorld(j).getRebel() <= 0.5f) {
+					arrays.getPersonFromWorld(j).setVaccinated(true);
+					dayVacc += 1;
+				}
+			}
+			else {
+				if ((1.0f + rand() % 10) / 10 * arrays.getPersonFromWorld(j).getRebel() <= 0.5f) {
+					arrays.getPersonFromWorld(j).setVaccinated(true);
+					dayVacc += 1;
+				}
+			}
+		}
+
+		// Need to adjust infection length depending on if vacc'd, and infection chance
 
 		if (arrays.getPersonFromWorld(j).getInfected() == true) {
 			numberInfected += 1;
@@ -160,7 +178,7 @@ int Simulation::studyLoop(int length) {
 
 		interactInfectLoop();
 
-//need to put infections into buffer for output
+//need to put infections into buffer for output, also work out vaccinations
 
 	}
 	return 0;

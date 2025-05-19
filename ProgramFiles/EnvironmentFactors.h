@@ -3,9 +3,9 @@
 
 class EnvironmentFactors {
 public:
-	EnvironmentFactors() {};
+	EnvironmentFactors() { numHealthRisk = 0; };
 
-	EnvironmentFactors(int pop) { population = pop; };
+	EnvironmentFactors(int pop) { population = pop; numHealthRisk = 0; };
 
 	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS) {
 		masksEnforced = mE;
@@ -21,24 +21,24 @@ public:
 
 	~EnvironmentFactors() {}
 
-	bool getLockdown() { return lockdown; }
-	bool getMaskEnforced() { return masksEnforced; }
-	bool getSocialDistancing() { return socialDistancing; }
-	int  getMinInfectPeriod() { return minInfectionPeriod; }
-	int  getAsympPeriod() { return asymptomaticPeriod; }
-	int	 getLengthSim() { return lengthSim; }
-	int  getPopulation() { return population; }
-	float getGroupRebel() { return groupRebel; }
+	void	incrementNumHealthRisk() { numHealthRisk += 1; }
 
-	void setLockdown(bool l) {
-		lockdown = l;
-	}
-	void setSocialDistancing(bool s) {
-		socialDistancing = s;
-	}
-	void setMaskEnforced(bool m) {
-		masksEnforced = m;
-	}
+	bool	getLockdown() { return lockdown; }
+	bool	getMaskEnforced() { return masksEnforced; }
+	bool	getSocialDistancing() { return socialDistancing; }
+	bool	getVaccinationRollOut() { return vaccinationRollout; }
+	int		getMinInfectPeriod() { return minInfectionPeriod; }
+	int		getAsympPeriod() { return asymptomaticPeriod; }
+	int		getLengthSim() { return lengthSim; }
+	int		getPopulation() { return population; }
+	float	getGroupRebel() { return groupRebel; }
+	int		getNumHealthRisk() { return numHealthRisk; }
+
+
+	void	setLockdown(bool l) { lockdown = l; }
+	void	setSocialDistancing(bool s) { socialDistancing = s; }
+	void	setMaskEnforced(bool m) { masksEnforced = m; }
+	void	setNumHealthRisk(int nHR) { numHealthRisk = nHR; }
 
 protected:
 	bool	masksEnforced;
@@ -52,5 +52,6 @@ protected:
 
 	float	groupRebel;
 	int		lengthSim;
+	int		numHealthRisk;
 
 };
