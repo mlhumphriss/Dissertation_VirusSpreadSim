@@ -7,8 +7,10 @@ public:
 	PopArrays() {};
 
 	PopArrays(int pop) {
-		worldPop = new Person[pop];
-		outsidePop = new Person[pop];
+		worldPop	= new Person[pop];
+		outsidePop	= new Person[pop];
+		infectedA	= new int[pop];
+		totalInfectA= new int[pop];
 	};
 	~PopArrays() {
 		//delete worldPop;
@@ -23,13 +25,25 @@ public:
 		outsidePop[i] = p;
 	}
 
+	void addToInfectedArray(int x, int i) {
+		infectedA[x] = i;
+	}
+	void addToTotalInfectArray(int x, int t) {
+		totalInfectA[x] = t;
+	}
+
 	Person getPersonFromWorld(int i) { return worldPop[i]; }
 	Person getPersonFromOutside(int i) { return outsidePop[i]; }
 
 	Person* getWorldPop() { return worldPop; }
 	Person* getOutsidePop() { return outsidePop; }
+	int*	getInfectedA() { return infectedA; }
+	int*	getTotalInfectA() { return totalInfectA; }
 	
 protected:
 	Person* worldPop;
 	Person* outsidePop;
+
+	int*	infectedA;
+	int*	totalInfectA;
 };

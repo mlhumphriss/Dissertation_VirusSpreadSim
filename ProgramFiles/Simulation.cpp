@@ -203,7 +203,7 @@ int Simulation::studyLoop(int length) {
 
 		interactInfectLoop();
 
-//need to put infections into buffer for output, also work out vaccinations
+//need to put infections into buffer for output
 
 	}
 	return 0;
