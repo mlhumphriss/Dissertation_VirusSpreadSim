@@ -45,12 +45,12 @@ int Simulation::leaveHouseLoop() {
 			if (arrays.getPersonFromWorld(j).getAsymptomatic() == true && (simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod()) {
 				arrays.getPersonFromWorld(j).setAsymptomatic(false);
 			}
-			//For when vaccination rollout is applied
-			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod() && arrays.getPersonFromWorld(j).getVaccinated()){
+			//For when vaccination rollout is applied  -    data suggested vaccinated period of 2-4 days IQR asym
+			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= 2 && arrays.getPersonFromWorld(j).getVaccinated()){
 				if (rand() % 2 == 1) {
 					arrays.getPersonFromWorld(j).setInfected(false, -1);
 				}
-				else if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getAsympPeriod()+2) {
+				else if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= 4) {
 					arrays.getPersonFromWorld(j).setInfected(false, -1);
 				}
 			}
