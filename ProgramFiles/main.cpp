@@ -39,7 +39,7 @@ int main() {
 	}
 	dBBuild.loadOldSeed(pop, dataOutput);
 	dBBuild.initialiseDatabase(population, pop, environment);
-
+	cout << population.getPersonFromWorld(7).getRebel() << "\n";
 }
 	
 

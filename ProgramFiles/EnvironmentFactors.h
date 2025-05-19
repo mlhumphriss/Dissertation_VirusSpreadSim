@@ -3,9 +3,32 @@
 
 class EnvironmentFactors {
 public:
-	EnvironmentFactors() { numHealthRisk = 0; };
+	EnvironmentFactors() {
+		numHealthRisk = 0;
+		
+		masksEnforced = false;
+		socialDistancing = false;
+		lockdown = false;
+		vaccinationRollout = false;
+		asymptomaticPeriod = 3;
+		minInfectionPeriod = 11;
+		groupRebel = 1.0f;
+		lengthSim = 100;
+	};
 
-	EnvironmentFactors(int pop) { population = pop; numHealthRisk = 0; };
+	EnvironmentFactors(int pop) { 
+		population = pop; 
+		numHealthRisk = 0; 
+	
+		masksEnforced = false;
+		socialDistancing = false;
+		lockdown = false;
+		vaccinationRollout = false;
+		asymptomaticPeriod = 3;
+		minInfectionPeriod = 11;
+		groupRebel = 1.0f;
+		lengthSim = 100;
+	};
 
 	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS) {
 		masksEnforced = mE;
