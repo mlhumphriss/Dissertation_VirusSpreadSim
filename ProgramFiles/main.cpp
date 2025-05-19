@@ -38,7 +38,7 @@ int main() {
 		dBBuild.createNewSeed(pop, dataOutput);
 	}
 	dBBuild.loadOldSeed(pop, dataOutput);
-	dBBuild.initialiseDatabase(population, pop, environment);
+	dBBuild.initialiseDatabase(population, pop, environment); // Need inputs before this point else group rebel will be using 1.0f on persons no matter what
 	cout << population.getPersonFromWorld(7).getRebel() << "\n";
 }
 	

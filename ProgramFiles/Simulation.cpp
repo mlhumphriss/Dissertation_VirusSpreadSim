@@ -8,6 +8,16 @@ int Simulation::simInfectionChance() { //Calculates general infection chance if 
 	return 0;
 }
 
+void Simulation::initialInfection() {
+	for (int i = 0; i < 5; i++) {
+		int randInt = rand() % 100;
+		if (!arrays.getPersonFromWorld(randInt).getInfected()) {
+			arrays.getPersonFromWorld(randInt).setInfected(true, 0);
+			totalInfections += 1;
+		}
+	}
+}
+
 int Simulation::leaveHouseLoop() {
 	peopleOutside = 0;
 	numberInfected = 0;
@@ -154,6 +164,7 @@ int Simulation::interactInfectLoop() {
 					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() >= 0.5f) { // need data based infection chance between 0 and 1
 						worldRef = p.getWorldArrayref();
 						arrays.getPersonFromWorld(worldRef).setInfected(true, simDay);
+						totalInfections += 1;
 						continue;
 					}
 				}
@@ -165,6 +176,7 @@ int Simulation::interactInfectLoop() {
 					if (((1.0f + (rand() % 10)) / 10) * infectionChance * p.getRebel() >= 0.6f) { // need data based infection chance between 0 and 1
 						worldRef = p.getWorldArrayref();
 						arrays.getPersonFromWorld(worldRef).setInfected(true, simDay);
+						totalInfections += 1;
 						continue;
 					}
 				}
@@ -179,6 +191,10 @@ int Simulation::interactInfectLoop() {
 int Simulation::studyLoop(int length) {
 	srand(time(0));
 	simInfectionChance();
+	totalInfections = 0;
+	initialInfection();
+
+
 
 	for (int i = 0; i < length; i++) {
 		simDay += 1;

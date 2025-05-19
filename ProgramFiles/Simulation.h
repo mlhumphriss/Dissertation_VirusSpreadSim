@@ -26,7 +26,7 @@ public:
 	int studyLoop(int length);
 	int leaveHouseLoop();
 	int interactInfectLoop();
-
+	void initialInfection();
 	
 
 	int getSimDay() { return simDay; }
@@ -45,6 +45,7 @@ protected:
 	int		numberInfected;
 	int		infectedOutside;
 	int		numVaccinated;
+	int		totalInfections;
 
 	int		avgPeopleInteractions;
 	float	infectionChance;
