@@ -8,7 +8,19 @@ using namespace std;
 
 class Inputs {
 public:
-	Inputs();
+	Inputs() {
+		iMasksEnforced = false;
+		iSocialDistancing = false;
+		iLockdown = false;
+		iVaccinationRollout = false;
+		iMinInfectionPeriod = 16; //need to check this and Asym against research data
+		iAsymptomaticPeriod = 6;
+		iGroupRebel = 1.0f;
+		iLengthSim = 100;
+		iInitialInfections = 5;
+	};
+
+	int inputEnvironmentSettings(EnvironmentFactors environment);
 
 	int setEnvironmentAttributes(EnvironmentFactors e) {
 		int c = e.setEnvironmentFactors(iMasksEnforced, iSocialDistancing, iLockdown, iVaccinationRollout, iMinInfectionPeriod, iAsymptomaticPeriod, iGroupRebel, iLengthSim, iInitialInfections);

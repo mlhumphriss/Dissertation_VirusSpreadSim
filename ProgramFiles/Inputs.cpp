@@ -1,7 +1,11 @@
 #include "Inputs.h"
 
+int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
+	bool exit = false;
 
-/**int Inputs::setEnvironmentAttributes(EnvironmentFactors e) {
-	e.setEnvironmentFactors(bool iMasksEnforced, bool iSocialDistancing, bool iPushingHandSanitizer, bool iLockdown, bool iVaccinationRollout, int iMinInfectionPeriod, int iAsymptomaticPeriod, float iGroupRebel);
+	while (!exit) {
+		system("CLS");
 
-}*/
+	}
+
+}

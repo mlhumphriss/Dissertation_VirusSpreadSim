@@ -27,6 +27,7 @@ int main() {
 	time_t seedTime = time(0); //Setting time for programs random number for sim
 	PopArrays population = PopArrays(pop);
 	DataRW dataOutput;
+	Inputs dataInput;
 	DatabaseBuilder dBBuild = DatabaseBuilder(pop);
 	EnvironmentFactors environment = EnvironmentFactors(pop);
 	/**if (!initialisation()) {
@@ -38,8 +39,11 @@ int main() {
 		dBBuild.createNewSeed(pop, dataOutput);
 	}
 	dBBuild.loadOldSeed(pop, dataOutput);
+	dataInput.inputEnvironmentSettings(environment);
 	dBBuild.initialiseDatabase(population, pop, environment); // Need inputs before this point else group rebel will be using 1.0f on persons no matter what
-	cout << population.getPersonFromWorld(7).getRebel() << "\n";
+	//cout << population.getPersonFromWorld(7).getRebel() << "\n";
+	Simulation mainProgram = Simulation(environment, population, dataOutput);
+	mainProgram.studyLoop(environment.getLengthSim();
 }
 	
 
