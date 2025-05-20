@@ -41,7 +41,6 @@
 *.log
 *.idb
 *.pdb
-*.vcxproj
 *.filters
 *.user
 *.ipch
