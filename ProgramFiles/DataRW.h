@@ -17,7 +17,7 @@ public:
 
 	int writePopDataFile(int pop, time_t seed);
 
-	int writeTestDataFile(EnvironmentFactors environment, PopArrays arrays, int size);
+	int writeTestResultsFile(EnvironmentFactors environment, PopArrays arrays, int size);
 
 	int readPopDataFile();
 
