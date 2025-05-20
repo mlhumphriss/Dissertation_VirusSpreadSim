@@ -194,8 +194,8 @@ int Simulation::studyLoop(int length) {
 	totalInfections = 0;
 	initialInfection();
 	simDay = 0;
-	arrays.addToInfectedArray(0, environment.getInitialInfections());
-	arrays.addToTotalInfectArray(0, totalInfections);
+	arrays.addToInfectedArray(simDay, environment.getInitialInfections());
+	arrays.addToTotalInfectArray(simDay, totalInfections);
 
 	for (int i = 0; i < length; i++) {
 		simDay += 1;
@@ -203,9 +203,11 @@ int Simulation::studyLoop(int length) {
 		arrays.addToInfectedArray(simDay, numberInfected);
 		arrays.addToTotalInfectArray(simDay, totalInfections);
 		interactInfectLoop();
-
-//need to put infections into buffer for output
-
 	}
+	int save = output.writeTestResultsFile(environment, arrays, simDay);
+	if (save == 0) {
+		cout << "Results Saved to File" << "\n";
+	}
+
 	return 0;
 }

@@ -24,7 +24,7 @@ int DataRW::readPopDataFile() {
     return 0;
 }
 
-int DataRW::writeTestDataFile(EnvironmentFactors environment, PopArrays arrays, int size) {
+int DataRW::writeTestResultsFile(EnvironmentFactors environment, PopArrays arrays, int size) {
     time_t now = time(0);
     string timeStr = ctime(&now);
     timeStr.pop_back();

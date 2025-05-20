@@ -11,7 +11,7 @@
 
 class Simulation {
 public:
-	Simulation(EnvironmentFactors e, PopArrays a){
+	Simulation(EnvironmentFactors e, PopArrays a, DataRW output){
 		environment = e;
 		arrays = a;
 		simDay = 0;
@@ -40,6 +40,7 @@ public:
 protected:
 	EnvironmentFactors environment;
 	PopArrays	arrays;
+	DataRW	output;
 	
 	int		simDay;
 	int		peopleOutside;
