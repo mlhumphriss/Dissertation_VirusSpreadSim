@@ -9,8 +9,8 @@ public:
 	PopArrays(int pop) {
 		worldPop	= new Person[pop];
 		outsidePop	= new Person[pop];
-		infectedA	= new int[pop];
-		totalInfectA= new int[pop];
+		infectedA	= new int[pop + 1];
+		totalInfectA= new int[pop + 1];
 	};
 	~PopArrays() {
 		//delete worldPop;
@@ -32,8 +32,10 @@ public:
 		totalInfectA[x] = t;
 	}
 
-	Person getPersonFromWorld(int i) { return worldPop[i]; }
-	Person getPersonFromOutside(int i) { return outsidePop[i]; }
+	Person	getPersonFromWorld(int i) { return worldPop[i]; }
+	Person	getPersonFromOutside(int i) { return outsidePop[i]; }
+	int		getFromInfectA(int i) { return infectedA[i]; }
+	int		getFromTotInfectA(int i) { return totalInfectA[i]; }
 
 	Person* getWorldPop() { return worldPop; }
 	Person* getOutsidePop() { return outsidePop; }

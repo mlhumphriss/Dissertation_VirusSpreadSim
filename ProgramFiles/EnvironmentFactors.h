@@ -14,6 +14,7 @@ public:
 		minInfectionPeriod = 11;
 		groupRebel = 1.0f;
 		lengthSim = 100;
+		initialInfections = 5;
 	};
 
 	EnvironmentFactors(int pop) { 
@@ -28,9 +29,10 @@ public:
 		minInfectionPeriod = 11;
 		groupRebel = 1.0f;
 		lengthSim = 100;
+		initialInfections = 5;
 	};
 
-	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS) {
+	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS, int iI) {
 		masksEnforced = mE;
 		socialDistancing = sD;
 		lockdown = l;
@@ -39,6 +41,7 @@ public:
 		asymptomaticPeriod = aP;
 		groupRebel = gR;
 		lengthSim = lS;
+		initialInfections = iI;
 		return 0;
 	};
 
@@ -56,6 +59,7 @@ public:
 	int		getPopulation() { return population; }
 	float	getGroupRebel() { return groupRebel; }
 	int		getNumHealthRisk() { return numHealthRisk; }
+	int		getInitialInfections() { return initialInfections; }
 
 
 	void	setLockdown(bool l) { lockdown = l; }
@@ -76,5 +80,5 @@ protected:
 	float	groupRebel;
 	int		lengthSim;
 	int		numHealthRisk;
-
+	int		initialInfections;
 };

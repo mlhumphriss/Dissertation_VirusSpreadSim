@@ -9,7 +9,7 @@ int Simulation::simInfectionChance() { //Calculates general infection chance if 
 }
 
 void Simulation::initialInfection() {
-	for (int i = 0; i < 5; i++) {
+	for (int i = 0; i < environment.getInitialInfections(); i++) {
 		int randInt = rand() % 100;
 		if (!arrays.getPersonFromWorld(randInt).getInfected()) {
 			arrays.getPersonFromWorld(randInt).setInfected(true, 0);
@@ -193,14 +193,15 @@ int Simulation::studyLoop(int length) {
 	simInfectionChance();
 	totalInfections = 0;
 	initialInfection();
-
-
+	simDay = 0;
+	arrays.addToInfectedArray(0, environment.getInitialInfections());
+	arrays.addToTotalInfectArray(0, totalInfections);
 
 	for (int i = 0; i < length; i++) {
 		simDay += 1;
-
 		leaveHouseLoop();
-
+		arrays.addToInfectedArray(simDay, numberInfected);
+		arrays.addToTotalInfectArray(simDay, totalInfections);
 		interactInfectLoop();
 
 //need to put infections into buffer for output

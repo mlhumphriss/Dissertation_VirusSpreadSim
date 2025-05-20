@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <fstream>
 #include <ctime>
+#include "EnvironmentFactors.h"
+#include "PopArrays.h"
 
 using namespace std;
 
@@ -14,6 +16,8 @@ public:
 	};
 
 	int writePopDataFile(int pop, time_t seed);
+
+	int writeTestDataFile(EnvironmentFactors environment, PopArrays arrays, int size);
 
 	int readPopDataFile();
 

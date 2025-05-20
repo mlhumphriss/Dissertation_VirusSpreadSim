@@ -11,7 +11,7 @@ public:
 	Inputs();
 
 	int setEnvironmentAttributes(EnvironmentFactors e) {
-		int c = e.setEnvironmentFactors(iMasksEnforced, iSocialDistancing, iLockdown, iVaccinationRollout, iMinInfectionPeriod, iAsymptomaticPeriod, iGroupRebel, iLengthSim);
+		int c = e.setEnvironmentFactors(iMasksEnforced, iSocialDistancing, iLockdown, iVaccinationRollout, iMinInfectionPeriod, iAsymptomaticPeriod, iGroupRebel, iLengthSim, iInitialInfections);
 		return c;
 	}
 
@@ -23,19 +23,13 @@ public:
 	float getIGroupRebel() { return iGroupRebel; }
 	bool getIVaccinationRollout() { return iVaccinationRollout; }
 	int getILengthSim() { return iLengthSim; }
+	int getIInitialInfections() { return iInitialInfections; }
 
-	void setILockdown(bool l) {
-		iLockdown = l;
-	}
-	void setISocialDistancing(bool s) {
-		iSocialDistancing = s;
-	}
-	void setIMaskEnforced(bool m) {
-		iMasksEnforced = m;
-	}
-	void setIVaccinationRollout(bool v) {
-		iVaccinationRollout = v;
-	}
+	void setILockdown(bool l) { iLockdown = l; }
+	void setISocialDistancing(bool s) { iSocialDistancing = s; }
+	void setIMaskEnforced(bool m) { iMasksEnforced = m; }
+	void setIVaccinationRollout(bool v) { iVaccinationRollout = v; }
+	void setIInitialInfections(int iI) { iInitialInfections = iI; }
 
 
 protected:
@@ -50,4 +44,5 @@ protected:
 	float	iGroupRebel;
 
 	int		iLengthSim;
+	int		iInitialInfections;
 };
