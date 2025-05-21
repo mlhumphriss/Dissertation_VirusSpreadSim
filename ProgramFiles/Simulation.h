@@ -25,8 +25,8 @@ public:
 
 	int simInfectionChance();
 	int studyLoop(int length);
-	int leaveHouseLoop();
-	int interactInfectLoop();
+	void leaveHouseLoop();
+	void interactInfectLoop();
 	void initialInfection();
 	
 
@@ -48,6 +48,8 @@ protected:
 	int		infectedOutside;
 	int		numVaccinated;
 	int		totalInfections;
+
+	int		testInt;
 
 	int		avgPeopleInteractions;
 	float	infectionChance;

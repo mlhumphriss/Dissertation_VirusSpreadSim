@@ -13,12 +13,18 @@ void Simulation::initialInfection() {
 		int randInt = rand() % 100;
 		if (!arrays.getPersonFromWorld(randInt).getInfected()) {
 			arrays.getPersonFromWorld(randInt).setInfected(true, 0);
+			if (arrays.getPersonFromWorld(randInt).getInfected()) {
+				cout << "Infection happening on initalisation" << "\n";
+			}
 			totalInfections += 1;
+			cout << randInt << "\n";
+			testInt = randInt;
 		}
 	}
+	cout << "set infections" << "\n";
 }
 
-int Simulation::leaveHouseLoop() {
+void Simulation::leaveHouseLoop() {  //infected never leave
 	peopleOutside = 0;
 	numberInfected = 0;
 	infectedOutside = 0;
@@ -46,6 +52,7 @@ int Simulation::leaveHouseLoop() {
 		// Need to adjust infection chance depending on if vacc'd
 
 		if (arrays.getPersonFromWorld(j).getInfected() == true) {
+			cout << "infected" << "\n";
 			numberInfected += 1;
 			if ((simDay - arrays.getPersonFromWorld(j).getDayInfected()) >= environment.getMinInfectPeriod() && (arrays.getPersonFromWorld(j).getDayInfected() != -1)) {
 				if (rand() % 2 == 1) {
@@ -66,14 +73,19 @@ int Simulation::leaveHouseLoop() {
 			}
 		}
 
-		p = arrays.getPersonFromWorld(j);
+		p = arrays.getPersonFromWorld(testInt);
+		if (p.getInfected()) {
+			cout << "found" << "\n";
+		}
 
 		if (p.getJobImportance() == 0) {
+			//cout << "Job Importance 0" << "\n";
 			if (p.getInfected() == true && p.getAsymptomatic() == true) {
 				arrays.addToOutsideArray(peopleOutside, p, j);
 				peopleOutside += 1;
 				infectedOutside += 1;
 				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+				cout << "infected outside" << "\n";
 			}
 			else if (p.getInfected() && !p.getAsymptomatic() && simDay - p.getDayInfected() > environment.getAsympPeriod() + 3){
 				if(((1.0f + rand() % 10) / 10) * p.getRebel() > 1.0f){
@@ -81,6 +93,7 @@ int Simulation::leaveHouseLoop() {
 					peopleOutside += 1;
 					infectedOutside += 1;
 					arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+					cout << "infected outside" << "\n";
 				}
 				else {
 					arrays.getPersonFromWorld(j).setDaysSinceLeft(arrays.getPersonFromWorld(j).getDaySinceLeft() + 1);
@@ -93,7 +106,7 @@ int Simulation::leaveHouseLoop() {
 			}
 		}
 		
-		else if (environment.getLockdown() && p.getJobImportance() != 0 || p.getJobImportance() == 2) {
+		else if (environment.getLockdown() && p.getJobImportance() != 0 /** || p.getJobImportance() == 2/**/) {
 			leaveChance = (0.1f * p.getDaySinceLeft()) + (rand() % 10)/10 ;  //increase with days since left, * by rebel
 			if (p.getHealthRisk() == 1) { leaveChance = leaveChance * 0.5f; }
 
@@ -104,6 +117,7 @@ int Simulation::leaveHouseLoop() {
 					peopleOutside += 1;
 					infectedOutside += 1;
 					arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+					cout << "infected outside" << "\n";
 				}
 				else {
 					arrays.getPersonFromWorld(j).setDaysSinceLeft(arrays.getPersonFromWorld(j).getDaySinceLeft() + 1);
@@ -115,16 +129,19 @@ int Simulation::leaveHouseLoop() {
 				if (p.getInfected() == true && p.getAsymptomatic() == true) {
 					peopleOutside += 1;
 					infectedOutside += 1;
+					cout << "infected outside" << "\n";
 				}
 			}
 		}
 
 		else {
+			//cout << "normal people" << "\n";
 			if (p.getInfected() == true && p.getAsymptomatic() == true) {
 				arrays.addToOutsideArray(peopleOutside, p, j);
 				peopleOutside += 1;
 				infectedOutside += 1;
 				arrays.getPersonFromWorld(j).setDaysSinceLeft(0);
+				cout << "infected outside" << "\n";
 			}
 			else if (p.getInfected() && !p.getAsymptomatic() && simDay - p.getDayInfected() > environment.getAsympPeriod() + 3) {
 				if (((1.0f + rand() % 10) / 10) * p.getRebel() > 1.0f) {
@@ -144,11 +161,9 @@ int Simulation::leaveHouseLoop() {
 			}
 		}
 	}
-
-	return 0;
 }
 
-int Simulation::interactInfectLoop() {
+void Simulation::interactInfectLoop() {
 	Person p;
 	int worldRef;
 	//cout << "c" << "\n";
@@ -185,7 +200,7 @@ int Simulation::interactInfectLoop() {
 
 	}
 	
-	return 0;
+
 }
 
 int Simulation::studyLoop(int length) {
@@ -196,6 +211,12 @@ int Simulation::studyLoop(int length) {
 	simDay = 0;
 	arrays.addToInfectedArray(simDay, environment.getInitialInfections());
 	arrays.addToTotalInfectArray(simDay, totalInfections);
+
+	cout << "test int infected before loops"<< arrays.getPersonFromWorld(testInt).getInfected() << "\n";
+
+	if (arrays.getPersonFromWorld(testInt).getInfected()) {
+		cout << "test int infected before loops" << "\n";
+	}
 
 	for (int i = 0; i < length; i++) {
 		//cout << "A" << "\n";
