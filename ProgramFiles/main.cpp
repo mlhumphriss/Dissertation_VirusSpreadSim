@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int pop = 1000;
+int pop = 100000;
 
 /**bool initialisation() {
 	PopArrays population = PopArrays(pop);

@@ -181,10 +181,13 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 
 void Simulation::interactInfectLoop() {
 	Person* p;
+	Person* i;
 	int worldRef;
+	bool check = false;
+	int sumInfect = 0;
 	//cout << "c" << "\n";
 	for (int k = 0; k < environment.getPopulation(); k++) {
-		p = arrays.getPersonFromOutside(k);
+		/**p = arrays.getPersonFromOutside(k);
 		if (p == nullptr) { 
 			//cout << "nullptr removed at addr: " << p << "\n";
 			continue; }
@@ -200,7 +203,7 @@ void Simulation::interactInfectLoop() {
 		if (environment.getLockdown() && p->getJobImportance() != 0) {
 			for (int x = 0; x < (avgPeopleInteractions / 2); x++) {
 				if ((rand() % peopleOutside) < infectedOutside) {
-					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.5f) { // need data based infection chance between 0 and 1
+					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.3f) { // need data based infection chance between 0 and 1
 						worldRef = p->getWorldArrayref();
 						p->setInfected(true, simDay);
 						totalInfections += 1;
@@ -219,7 +222,7 @@ void Simulation::interactInfectLoop() {
 				//}
 				if ((rand() % peopleOutside) < infectedOutside) {
 					//cout << "Maybe Infect\n";
-					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.5f) { // need data based infection chance between 0 and 1
+					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.3f) { // need data based infection chance between 0 and 1
 						worldRef = p->getWorldArrayref();
 						p->setInfected(true, simDay);
 						totalInfections += 1;
@@ -227,6 +230,33 @@ void Simulation::interactInfectLoop() {
 					}
 				}
 			}
+		}/**/
+
+		i = arrays.getPersonFromOutside(k);
+		if (i == nullptr) { continue; }
+		int interactions = avgPeopleInteractions;
+
+		if (i->getInfected() && sumInfect < infectedOutside) {
+			sumInfect += 1;
+			if (environment.getLockdown() && i->getJobImportance() != 0) { interactions = avgPeopleInteractions / 2; }
+			for (int x = 0; x < interactions; x++) {
+				check = false;
+				p = arrays.getPersonFromOutside(rand() % environment.getPopulation());
+				while (!check) {
+					p = arrays.getPersonFromOutside(rand() % environment.getPopulation());
+					if (p != nullptr) {	check = true; }
+				}
+				if (p->getInfected() || (simDay - p->getDayInfected() <= environment.getAsympPeriod() && p->getDayInfected() > 0)) { continue; }
+
+				if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.3f) {
+					worldRef = p->getWorldArrayref();
+					p->setInfected(true, simDay);
+					totalInfections += 1;
+					continue;
+				}
+
+				}
+			
 		}
 	}
 }
