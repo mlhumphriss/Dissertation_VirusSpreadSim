@@ -25,10 +25,16 @@ int DataRW::readPopDataFile() {
 }
 
 int DataRW::writeTestResultsFile(EnvironmentFactors environment, PopArrays arrays, int size) {
-    time_t now = time(0);
-    string timeStr = ctime(&now);
+    /*time_t now = time(0);
+    //string timeStr = ctime(&now);
+    //timeStr.pop_back();
+    char buffer[26];
+    errno_t err = ctime_s(buffer, sizeof(buffer), &now);
+    if (err != 0) { std::cerr << "ctime_s failed\n"; return 1; }
+    std::string timeStr(buffer);
     timeStr.pop_back();
-    string filename = ("DatFile" + timeStr);
+    string filename = ("DataFile" + timeStr);*/
+    string filename = ("DataFile" + (rand() % 10000));
 
     ofstream saveFile;
     saveFile.open(filename.c_str());

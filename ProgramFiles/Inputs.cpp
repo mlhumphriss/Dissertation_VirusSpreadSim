@@ -4,7 +4,10 @@
 
 int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 	bool exit = false;
+	bool check = false;
+	float inputF;
 	int	inputSelect;
+	int input;
 
 	while (!exit) {
 		system("CLS");
@@ -44,8 +47,7 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				std::this_thread::sleep_for(chrono::milliseconds(500));
 				break;
 			case 5:
-				float input;
-				bool check = false;
+				check = false;
 				cout << "Input Value for Rebeliousness Modifier between 0.0 and 2.0" << "\n";
 				cin >> input;
 				while (!check) {
@@ -59,8 +61,7 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				}
 				break;
 			case 6:
-				int input;
-				bool check = false;
+				check = false;
 				cout << "Input Value for Initial Infections" << "\n";
 				cin >> input;
 				while (!check) {
@@ -74,8 +75,7 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				}
 				break;
 			case 7:
-				int input;
-				bool check = false;
+				check = false;
 				cout << "Input Value for Asymptomatic Period" << "\n";
 				cin >> input;
 				while (!check) {
@@ -89,8 +89,7 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				}
 				break;
 			case 8:
-				int input;
-				bool check = false;
+				check = false;
 				cout << "Input Value for Minimum Infection Period" << "\n";
 				cin >> input;
 				while (!check) {
@@ -104,8 +103,7 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				}
 				break;
 			case 9:
-				int input;
-				bool check = false;
+				check = false;
 				cout << "Input Value for Simulation Length" << "\n";
 				cin >> input;
 				while (!check) {
@@ -120,11 +118,10 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				break;
 			case 0:
 				int checkNum;
-				bool check = false;
 				cout << "Continue to Simulation? (1 for Yes, 0 for No)" << "\n";
 				cin >> checkNum;
 				while (!check) {
-					if (checkNum != 1 || checkNum != 0) {
+					if (checkNum != 1 && checkNum != 0) {
 						cout << "Enter a Valid Answer (1 for Yes, 0 for No)" << "\n";
 						cin >> checkNum;
 					}
