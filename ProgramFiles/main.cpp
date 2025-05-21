@@ -43,7 +43,7 @@ int main() {
 	dBBuild.initialiseDatabase(population, pop, environment); // Need inputs before this point else group rebel will be using 1.0f on persons no matter what
 	//cout << population.getPersonFromWorld(7).getRebel() << "\n";
 	Simulation mainProgram = Simulation(environment, population, dataOutput);
-	mainProgram.studyLoop(environment.getLengthSim();
+	mainProgram.studyLoop(environment.getLengthSim());
 }
 	
 
