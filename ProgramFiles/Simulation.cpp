@@ -246,9 +246,9 @@ void Simulation::interactInfectLoop() {
 					p = arrays.getPersonFromOutside(rand() % environment.getPopulation());
 					if (p != nullptr) {	check = true; }
 				}
-				if (p->getInfected() || (simDay - p->getDayInfected() <= environment.getAsympPeriod() && p->getDayInfected() > 0)) { continue; }
+				if (p->getInfected() || (simDay - p->getDayInfected() <= environment.getMinInfectPeriod() && p->getDayInfected() > 0)) { continue; }
 
-				if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.3f) {
+				if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() * i->getRebel() >= 0.25f) {  //could add vaccine or previous infection multiplier
 					worldRef = p->getWorldArrayref();
 					p->setInfected(true, simDay);
 					totalInfections += 1;
