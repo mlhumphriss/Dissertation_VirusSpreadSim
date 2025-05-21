@@ -134,5 +134,5 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
 				break;
 		}
 	}
-
+	return 0;
 }
