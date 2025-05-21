@@ -41,9 +41,9 @@ int main() {
 	dBBuild.loadOldSeed(pop, dataOutput);
 	dataInput.inputEnvironmentSettings(environment);
 	dBBuild.initialiseDatabase(population, pop, environment); // Need inputs before this point else group rebel will be using 1.0f on persons no matter what
-	//cout << population.getPersonFromWorld(7).getRebel() << "\n";
+	cout << environment.getLengthSim() << "\n";
 	Simulation mainProgram = Simulation(environment, population, dataOutput);
-	mainProgram.studyLoop(environment.getLengthSim());
+	int study = mainProgram.studyLoop(environment.getLengthSim());
 }
 	
 

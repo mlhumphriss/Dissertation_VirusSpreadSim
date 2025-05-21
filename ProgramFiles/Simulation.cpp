@@ -25,7 +25,7 @@ int Simulation::leaveHouseLoop() {
 	Person p;
 	float leaveChance;
 	int dayVacc = 0;
-
+	//cout << "b" << "\n";
 	for (int j = 0; j < environment.getPopulation(); j++) {
 
 		if (environment.getVaccinationRollOut() && !arrays.getPersonFromWorld(j).getVaccinated() && dayVacc < 5) {
@@ -151,7 +151,7 @@ int Simulation::leaveHouseLoop() {
 int Simulation::interactInfectLoop() {
 	Person p;
 	int worldRef;
-
+	//cout << "c" << "\n";
 	for (int k = 0; k < peopleOutside; k++) {
 		p = arrays.getPersonFromOutside(k);
 
@@ -198,12 +198,14 @@ int Simulation::studyLoop(int length) {
 	arrays.addToTotalInfectArray(simDay, totalInfections);
 
 	for (int i = 0; i < length; i++) {
+		//cout << "A" << "\n";
 		simDay += 1;
 		leaveHouseLoop();
 		arrays.addToInfectedArray(simDay, numberInfected);
 		arrays.addToTotalInfectArray(simDay, totalInfections);
 		interactInfectLoop();
 	}
+
 	int save = output.writeTestResultsFile(environment, arrays, simDay);
 	if (save == 0) {
 		cout << "Results Saved to File" << "\n";

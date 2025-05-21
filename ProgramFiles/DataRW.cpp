@@ -34,7 +34,9 @@ int DataRW::writeTestResultsFile(EnvironmentFactors environment, PopArrays array
     std::string timeStr(buffer);
     timeStr.pop_back();
     string filename = ("DataFile" + timeStr);*/
-    string filename = ("DataFile" + (rand() % 10000));
+    int ranFileNum = rand() % 10000;
+
+    string filename = ("DataFile.txt");
 
     ofstream saveFile;
     saveFile.open(filename.c_str());
