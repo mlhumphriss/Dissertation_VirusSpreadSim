@@ -65,6 +65,13 @@ public:
 	void	setLockdown(bool l) { lockdown = l; }
 	void	setSocialDistancing(bool s) { socialDistancing = s; }
 	void	setMaskEnforced(bool m) { masksEnforced = m; }
+	void	setVaccinationRollout(bool v) { vaccinationRollout = v; }
+	void	setGroupRebeliousness(float r) { groupRebel = r; }
+	void	setInitialInfections(int iI) { initialInfections = iI; }
+	void	setLengthSim(int l) { lengthSim = l; }
+	void	setMinInfectionPeriod(int mIP) { minInfectionPeriod = mIP; }
+	void	setAsymptomaticPeriod(int aP) { asymptomaticPeriod = aP; }
+
 	void	setNumHealthRisk(int nHR) { numHealthRisk = nHR; }
 
 protected:
@@ -79,6 +86,8 @@ protected:
 
 	float	groupRebel;
 	int		lengthSim;
-	int		numHealthRisk;
 	int		initialInfections;
+
+	int		numHealthRisk;
+
 };
