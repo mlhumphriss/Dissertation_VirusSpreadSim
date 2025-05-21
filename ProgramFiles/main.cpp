@@ -12,7 +12,7 @@
 
 using namespace std;
 
-int pop = 100;
+int pop = 1000;
 
 /**bool initialisation() {
 	PopArrays population = PopArrays(pop);
@@ -40,6 +40,7 @@ int main() {
 	}
 	dBBuild.loadOldSeed(pop, dataOutput);
 	dataInput.inputEnvironmentSettings(environment);
+	population.addStatArrays(environment.getLengthSim());
 	dBBuild.initialiseDatabase(population, pop, environment); // Need inputs before this point else group rebel will be using 1.0f on persons no matter what
 	cout << environment.getLengthSim() << "\n";
 	Simulation mainProgram = Simulation(environment, population, dataOutput);

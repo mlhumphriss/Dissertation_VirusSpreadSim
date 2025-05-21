@@ -11,12 +11,15 @@ public:
 		outsidePop	= new Person*[pop];
 		memset(outsidePop, 0, sizeof(Person*) * pop);
 
-		infectedA	= new int[pop + 1];
-		totalInfectA= new int[pop + 1];
 	};
 	~PopArrays() {
 		//delete worldPop;
 		//delete outsidePop;
+	}
+
+	void addStatArrays(int size) {
+		infectedA = new int[size + 1];
+		totalInfectA = new int[size + 1];
 	}
 	
 	void addToWorldArray(int i, Person p){
