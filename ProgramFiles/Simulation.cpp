@@ -14,7 +14,7 @@ void Simulation::initialInfection() {
 		if (!arrays.getPersonFromWorld(randInt)->getInfected()) {
 			arrays.getPersonFromWorld(randInt)->setInfected(true, 0);
 			if (arrays.getPersonFromWorld(randInt)->getInfected()) {
-				cout << "Infection happening on initalisation" << "\n";
+				//cout << "Infection happening on initalisation" << "\n";
 			}
 			totalInfections += 1;
 			//cout << randInt << "\n";
@@ -40,7 +40,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 	for (int j = 0; j < environment.getPopulation(); j++) {
 		p = arrays.getPersonFromWorld(j);
 		if (environment.getVaccinationRollOut() && !p->getVaccinated() && dayVacc < 5) {
-			std::cout << "Vaccine Rollout\n";
+			//std::cout << "Vaccine Rollout\n";
 			if (numVaccinated <= (environment.getNumHealthRisk() - 5) && p->getHealthRisk() == 1) {
 				if ((1.0f + rand() % 10) / 10.0f * p->getRebel() <= 0.5f) {
 					p->setVaccinated(true);
@@ -59,7 +59,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 		p = arrays.getPersonFromWorld(j);
 
 		if (p->getInfected() == true) {
-			std::cout << "Infected\n";
+			//std::cout << "Infected\n";
 			//cout << "infected" << "\n";
 			numberInfected += 1;
 			if ((simDay - p->getDayInfected()) >= environment.getMinInfectPeriod() && (p->getDayInfected() != -1)) {
@@ -94,7 +94,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 				peopleOutside += 1;
 				infectedOutside += 1;
 				p->setDaysSinceLeft(0);
-				cout << "infected outside" << "\n";
+				//cout << "infected outside" << "\n";
 			}
 			else if (p->getInfected() && !p->getAsymptomatic() && simDay - p->getDayInfected() > environment.getAsympPeriod() + 3){
 				if(((1.0f + rand() % 10) / 10.0f) * p->getRebel() > 1.0f){
@@ -102,7 +102,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 					peopleOutside += 1;
 					infectedOutside += 1;
 					p->setDaysSinceLeft(0);
-					cout << "infected outside" << "\n";
+					//cout << "infected outside" << "\n";
 				}
 				else {
 					p->setDaysSinceLeft(p->getDaySinceLeft() + 1);
@@ -116,7 +116,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 		}
 		
 		else if (environment.getLockdown() && p->getJobImportance() != 0 /** || p.getJobImportance() == 2/**/) {
-			std::cout << "Lockdown\n";
+			//std::cout << "Lockdown\n";
 			leaveChance = (0.1f * p->getDaySinceLeft()) + (rand() % 10)/10.0f ;  //increase with days since left, * by rebel
 			if (p->getHealthRisk() == 1) { leaveChance = leaveChance * 0.5f; }
 
@@ -152,7 +152,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 				peopleOutside += 1;
 				infectedOutside += 1;
 				p->setDaysSinceLeft(0);
-				cout << "infected outside" << "\n";
+				//cout << "infected outside" << "\n";
 			}
 			else if (p->getInfected() && !p->getAsymptomatic() && simDay - p->getDayInfected() > environment.getAsympPeriod() + 3) {
 				//std::cout << "Recovering\n";
@@ -174,9 +174,9 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 			}
 		}
 	}
-	std::cout << "People outside: " << peopleOutside << std::endl;
+	/*std::cout << "People outside: " << peopleOutside << std::endl;
 	std::cout << "People infected: " << numberInfected << std::endl;
-	std::cout << "Infected iutside: " << infectedOutside << std::endl;
+	std::cout << "Infected iutside: " << infectedOutside << std::endl;*/
 }
 
 void Simulation::interactInfectLoop() {
@@ -186,11 +186,11 @@ void Simulation::interactInfectLoop() {
 	for (int k = 0; k < environment.getPopulation(); k++) {
 		p = arrays.getPersonFromOutside(k);
 		if (p == nullptr) { 
-			cout << "nullptr removed at addr: " << p << "\n";
+			//cout << "nullptr removed at addr: " << p << "\n";
 			continue; }
 
 		if (p->getInfected()) {
-			cout << k << ": Infected ignored at addr: " << p << "\n";
+			//cout << k << ": Infected ignored at addr: " << p << "\n";
 			continue;
 		}
 		if (environment.getLockdown() && p->getJobImportance() != 0) {
@@ -200,7 +200,7 @@ void Simulation::interactInfectLoop() {
 						worldRef = p->getWorldArrayref();
 						p->setInfected(true, simDay);
 						totalInfections += 1;
-						continue;
+						break;
 					}
 				}
 			}
@@ -214,12 +214,12 @@ void Simulation::interactInfectLoop() {
 				//	cin >> g;
 				//}
 				if ((rand() % peopleOutside) < infectedOutside) {
-					cout << "Maybe Infect\n";
-					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.2f) { // need data based infection chance between 0 and 1
+					//cout << "Maybe Infect\n";
+					if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() >= 0.5f) { // need data based infection chance between 0 and 1
 						worldRef = p->getWorldArrayref();
 						p->setInfected(true, simDay);
 						totalInfections += 1;
-						continue;
+						break;
 					}
 				}
 			}

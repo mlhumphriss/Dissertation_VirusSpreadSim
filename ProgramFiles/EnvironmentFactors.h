@@ -14,7 +14,7 @@ public:
 		minInfectionPeriod = 11;
 		groupRebel = 1.0f;
 		lengthSim = 100;
-		initialInfections = 50;
+		initialInfections = 5;
 	};
 
 	EnvironmentFactors(int pop) { 
@@ -29,7 +29,7 @@ public:
 		minInfectionPeriod = 11;
 		groupRebel = 1.0f;
 		lengthSim = 100;
-		initialInfections = 50;
+		initialInfections = 5;
 	};
 
 	int setEnvironmentFactors(bool mE, bool sD, bool l, bool vR, int mIP, int aP, float gR, int lS, int iI) {

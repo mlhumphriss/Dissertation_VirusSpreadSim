@@ -20,7 +20,7 @@ public:
 		iInitialInfections = 5;
 	};
 
-	int inputEnvironmentSettings(EnvironmentFactors environment);
+	int inputEnvironmentSettings(EnvironmentFactors& environment);
 
 	int setEnvironmentAttributes(EnvironmentFactors e) {
 		int c = e.setEnvironmentFactors(iMasksEnforced, iSocialDistancing, iLockdown, iVaccinationRollout, iMinInfectionPeriod, iAsymptomaticPeriod, iGroupRebel, iLengthSim, iInitialInfections);

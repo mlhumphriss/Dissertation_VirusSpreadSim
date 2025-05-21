@@ -22,6 +22,6 @@ void DatabaseBuilder::initialiseDatabase(PopArrays& arrays, int size, Environmen
 
 	for (int i = 0; i < size; ++i) {
 		Person* p = arrays.getPersonFromWorld(i);
-		std::cout << "jobImportance: " << p->getJobImportance() << std::endl;
+		//std::cout << "jobImportance: " << p->getJobImportance() << std::endl;
 	}
 }

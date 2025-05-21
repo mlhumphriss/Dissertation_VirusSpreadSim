@@ -2,7 +2,7 @@
 #include <chrono>
 #include <thread>
 
-int Inputs::inputEnvironmentSettings(EnvironmentFactors environment) {
+int Inputs::inputEnvironmentSettings(EnvironmentFactors& environment) {
 	bool exit = false;
 	bool check = false;
 	float inputF;
