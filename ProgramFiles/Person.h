@@ -41,6 +41,7 @@ public:
 		//cout << "Infection called" << "\n";
 		if (infected == true) {
 			infected = i;
+			dayInfected = d;
 			return;
 		}
 		else {

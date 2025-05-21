@@ -64,7 +64,7 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 			numberInfected += 1;
 			if ((simDay - p->getDayInfected()) >= environment.getMinInfectPeriod() && (p->getDayInfected() != -1)) {
 				if (rand() % 2 == 1) {
-					p->setInfected(false, -1);
+					p->setInfected(false, simDay);
 				}
 			}
 			if (p->getAsymptomatic() == true && (simDay - p->getDayInfected()) >= environment.getAsympPeriod()) {
@@ -73,10 +73,10 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 			//For when vaccination rollout is applied  -    data suggested vaccinated period of 2-4 days IQR asym
 			if ((simDay - p->getDayInfected()) >= 2 && p->getVaccinated()){
 				if (rand() % 2 == 1) {
-					p->setInfected(false, -1);
+					p->setInfected(false, simDay);
 				}
 				else if ((simDay - p->getDayInfected()) >= 4) {
-					p->setInfected(false, -1);
+					p->setInfected(false, simDay);
 				}
 			}
 		}
@@ -193,6 +193,10 @@ void Simulation::interactInfectLoop() {
 			//cout << k << ": Infected ignored at addr: " << p << "\n";
 			continue;
 		}
+		if (simDay - p->getDayInfected() <= environment.getAsympPeriod() && p->getDayInfected() > 0) {
+			continue;
+		}
+
 		if (environment.getLockdown() && p->getJobImportance() != 0) {
 			for (int x = 0; x < (avgPeopleInteractions / 2); x++) {
 				if ((rand() % peopleOutside) < infectedOutside) {
