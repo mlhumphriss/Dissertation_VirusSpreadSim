@@ -28,7 +28,7 @@ public:
 		if (pop < dRW.getReadPop()) { cout << "Seed Population larger than Pop" << "\n"; return 1; }
 		return 0;
 	}
-	void initialiseDatabase(PopArrays arrays, int size, EnvironmentFactors environment); //todo
+	void initialiseDatabase(PopArrays& arrays, int size, EnvironmentFactors environment); //todo
 
 
 

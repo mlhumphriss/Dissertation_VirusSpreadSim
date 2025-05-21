@@ -8,7 +8,9 @@ using namespace std;
 class Person {
 public:
 
-	Person() {};
+	Person() {
+		rebeliousness = 1.0f;
+	}
 	Person(int hR, int jI, float rebel, bool vac) {
 		healthRisk = hR;
 		jobImportance = jI;
