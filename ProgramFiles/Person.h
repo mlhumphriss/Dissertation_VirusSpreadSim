@@ -36,15 +36,15 @@ public:
 
 
 	void setInfected(bool i, int d) {
-		cout << "Infection called" << "\n";
+		//cout << "Infection called" << "\n";
 		if (infected == true) {
 			infected = i;
 			return;
 		}
 		else {
-			cout << "Infection added" << "\n";
+			//cout << "Infection added" << "\n";
 			infected = i;
-			cout << infected << "\n";
+			//cout << infected << "\n";
 			if (infected == true) {
 				asymptomatic = true;
 				dayInfected = d; //Fixes issues from before, but still overcomplicates infected. No longer a simple setter

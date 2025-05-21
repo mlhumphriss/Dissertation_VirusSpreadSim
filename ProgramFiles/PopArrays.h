@@ -32,8 +32,8 @@ public:
 		totalInfectA[x] = t;
 	}
 
-	Person	getPersonFromWorld(int i) { return worldPop[i]; }
-	Person	getPersonFromOutside(int i) { return outsidePop[i]; }
+	Person&	getPersonFromWorld(int i) { return worldPop[i]; }
+	Person&	getPersonFromOutside(int i) { return outsidePop[i]; }
 	int		getFromInfectA(int i) { return infectedA[i]; }
 	int		getFromTotInfectA(int i) { return totalInfectA[i]; }
 
