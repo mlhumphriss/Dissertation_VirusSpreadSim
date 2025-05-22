@@ -251,6 +251,8 @@ void Simulation::interactInfectLoop() {
 				}
 				if (p->getInfected() || (simDay - p->getDayInfected() <= environment.getMinInfectPeriod() && p->getDayInfected() > 0)) { continue; }
 				
+				immunityMod = 1.0f;
+
 				if (p->getDayInfected() > 0) { immunityMod = 0.65f; } // Designed to make threshhold ~  0.095f
 
 				if (p->getVaccinated()) { immunityMod = 0.1f; } //Designed to make threshold ~ 0.015f 
