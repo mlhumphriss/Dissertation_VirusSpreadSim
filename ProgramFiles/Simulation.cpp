@@ -39,18 +39,20 @@ void Simulation::leaveHouseLoop() {  //infected never leave
 	//cout << "b" << "\n";
 	for (int j = 0; j < environment.getPopulation(); j++) {
 		p = arrays.getPersonFromWorld(j);
-		if (environment.getVaccinationRollOut() && !p->getVaccinated() && dayVacc < 5) {
+		if (environment.getVaccinationRollOut() && !p->getVaccinated() && dayVacc < 0.05f * environment.getPopulation()) {
 			//std::cout << "Vaccine Rollout\n";
 			if (numVaccinated <= (environment.getNumHealthRisk() - 5) && p->getHealthRisk() == 1) {
 				if ((1.0f + rand() % 10) / 10.0f * p->getRebel() <= 0.5f) {
 					p->setVaccinated(true);
 					dayVacc += 1;
+					totalVacc += 1;
 				}
 			}
 			else {
 				if ((1.0f + rand() % 10) / 10.0f * p->getRebel() <= 0.5f) {
 					p->setVaccinated(true);
 					dayVacc += 1;
+					totalVacc += 1;
 				}
 			}
 		}
@@ -185,6 +187,7 @@ void Simulation::interactInfectLoop() {
 	int worldRef;
 	bool check = false;
 	int sumInfect = 0;
+	float immunityMod = 1.0f;
 	//cout << "c" << "\n";
 	for (int k = 0; k < environment.getPopulation(); k++) {
 		/**p = arrays.getPersonFromOutside(k);
@@ -247,8 +250,12 @@ void Simulation::interactInfectLoop() {
 					if (p != nullptr) {	check = true; }
 				}
 				if (p->getInfected() || (simDay - p->getDayInfected() <= environment.getMinInfectPeriod() && p->getDayInfected() > 0)) { continue; }
+				
+				if (p->getVaccinated()) { immunityMod = 0.1f; } //Designed to make threshold ~ 0.015f 
 
-				if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() * i->getRebel() >= 0.25f) {  //could add vaccine or previous infection multiplier
+				else if (p->getDayInfected() > 0) { immunityMod = 0.65f; } // Designed to make threshhold ~  0.095f
+
+				if (((1.0f + (rand() % 10)) / 10.0f) * infectionChance * p->getRebel() * i->getRebel() >= 0.145f * immunityMod) {  //0.145f based on HCW infection rate
 					worldRef = p->getWorldArrayref();
 					p->setInfected(true, simDay);
 					totalInfections += 1;
@@ -283,6 +290,20 @@ int Simulation::studyLoop(int length) {
 		arrays.addToInfectedArray(simDay, numberInfected);
 		arrays.addToTotalInfectArray(simDay, totalInfections);
 		interactInfectLoop();
+
+		if (environment.getVaccinationRollOut()) {
+			if (totalVacc >= environment.getPopulation()) {
+				dayVaccFin = simDay;
+			}
+		}
+	}
+
+
+	if (environment.getVaccinationRollOut()) {
+		cout << "Population Vaccinated: " << totalVacc << "\n";
+		if (totalVacc >= environment.getPopulation()) {
+			cout << "Day Vaccination Coverage Established: " << dayVaccFin << "\n";
+		}
 	}
 
 	int save = output.writeTestResultsFile(environment, arrays, simDay);

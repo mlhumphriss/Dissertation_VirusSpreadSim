@@ -21,6 +21,8 @@ public:
 		infectionChance = 1.0f;
 		avgPeopleInteractions = 17;
 		numVaccinated = 0;
+		totalVacc = 0;
+		dayVaccFin = 0;
 	};
 
 	int simInfectionChance();
@@ -48,6 +50,8 @@ protected:
 	int		infectedOutside;
 	int		numVaccinated;
 	int		totalInfections;
+	int		totalVacc;
+	int		dayVaccFin;
 
 	int		testInt;
 
