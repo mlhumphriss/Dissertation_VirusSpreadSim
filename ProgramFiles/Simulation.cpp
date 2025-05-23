@@ -289,8 +289,8 @@ int Simulation::studyLoop(int length) {
 		//cout << "A" << "\n";
 		simDay += 1;
 		leaveHouseLoop();
-		arrays.addToInfectedArray(simDay, numberInfected);
-		arrays.addToTotalInfectArray(simDay, totalInfections);
+		arrays.addToInfectedArray(i, numberInfected);
+		arrays.addToTotalInfectArray(i, totalInfections);
 		interactInfectLoop();
 
 		if (environment.getVaccinationRollOut()) {
