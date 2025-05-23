@@ -13,7 +13,7 @@ void DatabaseBuilder::initialiseDatabase(PopArrays& arrays, int size, Environmen
 		jobImportance = rand() % 3;
 		rebeliousness = (1.0f + (rand()%20)) / 10.0f;
 		if (healthRisk == 1) { rebeliousness = rebeliousness * 0.5f; environment.incrementNumHealthRisk(); }
-		//rebeliousness = rebeliousness * environment.getGroupRebel();
+		rebeliousness = rebeliousness * environment.getGroupRebel();
 
 		Person p = Person(healthRisk, jobImportance, rebeliousness, false);
 

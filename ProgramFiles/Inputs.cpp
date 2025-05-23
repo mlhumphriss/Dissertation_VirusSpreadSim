@@ -49,11 +49,11 @@ int Inputs::inputEnvironmentSettings(EnvironmentFactors& environment) {
 			case 5:
 				check = false;
 				cout << "Input Value for Rebeliousness Modifier between 0.0 and 2.0" << "\n";
-				cin >> input;
+				cin >> inputF;
 				while (!check) {
-					if (input > 0.0f && input <= 2.0f) {
+					if (inputF > 0.0f && inputF <= 2.0f) {
 						check = true;
-						environment.setGroupRebeliousness(input);
+						environment.setGroupRebeliousness(inputF);
 					}
 					else {
 						cout << "Value out of Bounds, Please enter a value greater than 0 but not greater than 2.0" << "\n";
