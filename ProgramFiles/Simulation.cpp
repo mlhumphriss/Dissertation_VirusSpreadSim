@@ -276,8 +276,8 @@ int Simulation::studyLoop(int length) {
 	totalInfections = 0;
 	initialInfection();
 	simDay = 0;
-	arrays.addToInfectedArray(simDay, environment.getInitialInfections());
-	arrays.addToTotalInfectArray(simDay, totalInfections);
+	//arrays.addToInfectedArray(simDay, environment.getInitialInfections());
+	//arrays.addToTotalInfectArray(simDay, totalInfections);
 
 	//cout << "test int infected before loops"<< arrays.getPersonFromWorld(testInt).getInfected() << "\n";
 
@@ -294,7 +294,7 @@ int Simulation::studyLoop(int length) {
 		interactInfectLoop();
 
 		if (environment.getVaccinationRollOut()) {
-			if (totalVacc >= environment.getPopulation()) {
+			if (totalVacc >= environment.getPopulation() && dayVaccFin == 0) {
 				dayVaccFin = simDay;
 			}
 		}
